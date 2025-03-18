@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREECON | 発注企業と工事会社のマッチングプラットフォーム</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+/* 全体のリセットとベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #0056b3;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #003d7a;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* セクション共通スタイル */
+section {
+    padding: 80px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6c63ff;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a2b49;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a2b49;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #4a5568;
+}
+
+/* ボタンスタイル */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button.primary {
+    background-color: #00bfa5;
+    color: white;
+    border: none;
+}
+
+.button.primary:hover {
+    background-color: #00a896;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 191, 165, 0.2);
+}
+
+.button.secondary {
+    background-color: transparent;
+    color: #00bfa5;
+    border: 2px solid #00bfa5;
+}
+
+.button.secondary:hover {
+    background-color: rgba(0, 191, 165, 0.1);
+    transform: translateY(-2px);
+}
+
+.button.large {
+    padding: 16px 32px;
+    font-size: 18px;
+}
+
+/* ヘッダースタイル */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a2b49;
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    display: block;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav ul li {
+    margin-left: 30px;
+}
+
+.nav ul li a {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #00bfa5;
+}
+
+/* ヒーローセクション */
+.hero {
+    background: linear-gradient(135deg, #1a2b49 0%, #2a4073 100%);
+    color: white;
+    padding: 180px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23f8f9fa" fill-opacity="1" d="M0,96L60,112C120,128,240,160,360,160C480,160,600,128,720,128C840,128,960,160,1080,160C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero .cta-button {
+    text-align: center;
+}
+
+/* 課題提示セクション */
+.challenges {
+    background-color: #f8f9fa;
+    padding-top: 100px;
+}
+
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.challenge-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-card .icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(108, 99, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.challenge-card .icon i {
+    font-size: 30px;
+    color: #6c63ff;
+}
+
+/* ソリューションセクション */
+.solution {
+    background-color: #eef2ff;
+}
+
+.solution-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.solution-image {
+    flex: 1;
+}
+
+.solution-cards {
+    flex: 1;
+}
+
+.solution-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 機能紹介セクション */
+.features {
+    background-color: white;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card .icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(0, 191, 165, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.feature-card .icon i {
+    font-size: 30px;
+    color: #00bfa5;
+}
+
+/* メリットセクション */
+.advantages {
+    background-color: #eef2ff;
+}
+
+.advantages-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.advantage-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.check-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 191, 165, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.check-icon i {
+    color: #00bfa5;
+    font-size: 20px;
+}
+
+.advantage-item p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+/* 使い方セクション */
+.how-it-works {
+    background-color: white;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.step {
+    text-align: center;
+    flex: 1;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background-color: #6c63ff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+.step-arrow {
+    font-size: 30px;
+    color: #6c63ff;
+}
+
+/* 事例セクション */
+.case-studies {
+    background-color: #eef2ff;
+}
+
+.case-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.case-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.case-card:hover {
+    transform: translateY(-5px);
+}
+
+.case-card .icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(108, 99, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.case-card .icon i {
+    font-size: 30px;
+    color: #6c63ff;
+}
+
+/* パートナー紹介セクション */
+.partners {
+    background-color: white;
+}
+
+.partners-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.partner-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.partner-logo {
+    text-align: center;
+    width: 150px;
+}
+
+.partner-logo img {
+    margin-bottom: 15px;
+}
+
+.partner-logo h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.partner-logo p {
+    font-size: 14px;
+    color: #718096;
+    margin-bottom: 0;
+}
+
+.partners-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* FAQセクション */
+.faq {
+    background-color: #eef2ff;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 20px;
+    cursor: pointer;
+    position: relative;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question::after {
+    content: '+';
+    font-size: 20px;
+    color: #6c63ff;
+}
+
+.faq-question.active::after {
+    content: '-';
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer.active {
+    padding: 0 20px 20px;
+    max-height: 1000px;
+}
+
+/* お問い合わせセクション */
+.contact {
+    background-color: white;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* フッターセクション */
+.footer {
+    background-color: #1a2b49;
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.footer-about p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1024px) {
+    .solution-content {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    .nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav ul li {
+        margin: 0 10px 10px;
+    }
+    
+    .cta-button {
+        margin-top: 15px;
+    }
+    
+    .hero {
+        padding: 150px 0 80px;
+    }
+    
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+    
+    .challenge-grid,
+    .feature-grid,
+    .case-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .steps {
+        flex-direction: column;
+    }
+    
+    .step {
+        margin-bottom: 40px;
+    }
+    
+    .step-arrow {
+        transform: rotate(90deg);
+        margin: -20px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    h2 {
+        font-size: 28px;
+    }
+    
+    .challenge-grid,
+    .feature-grid,
+    .case-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form {
+        padding: 20px;
+    }
+}
+
+/* アニメーションとインタラクション */
+.faq-question {
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: rgba(108, 99, 255, 0.05);
+}
+
+/* スムーズスクロール */
+html {
+    scroll-behavior: smooth;
+}
+    </style>
+</head>
+<body>
+    <!-- ヘッダーセクション -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#"><img src="https://placehold.jp/150x50.png" alt="CAREECON"></a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#features">機能</a></li>
+                    <li><a href="#how-it-works">使い方</a></li>
+                    <li><a href="#case-studies">事例</a></li>
+                    <li><a href="#faq">よくある質問</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="cta-button">
+                <a href="#contact" class="button primary">無料見積・相談依頼</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="container">
+            <h1>工事発注を変える - 高品質・適正価格の工事会社マッチングプラットフォーム</h1>
+            <p>工期の厳守、統一品質の実現、多拠点管理の効率化をサポート</p>
+            <div class="cta-button">
+                <a href="#contact" class="button primary large">無料見積・相談依頼</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 課題提示セクション -->
+    <section class="challenges" id="challenges">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">CHALLENGES</span>
+                <h2>工事発注でこんな課題はありませんか？</h2>
+            </div>
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <div class="icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>信頼できる工事会社を見つけるのに時間がかかる</h3>
+                    <p>信頼できる工事会社選びには多くの時間と労力が必要。工事計画に影響が出ることも。</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>適正価格がわからず予算管理が難しい</h3>
+                    <p>相場観がわからず、妥当な見積もりかの判断が困難。予算オーバーや品質低下のリスクも。</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="icon">
+                        <i class="fas fa-calendar-times"></i>
+                    </div>
+                    <h3>工期の遅延が売上に直結する</h3>
+                    <p>工期遅延は直接的な売上損失につながります。特に多拠点展開では影響は甚大に。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ソリューションセクション -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">SOLUTION</span>
+                <h2>建設業界の透明性と信頼性を高める<br>新しい発注プラットフォーム</h2>
+            </div>
+            <div class="solution-content">
+                <div class="solution-image">
+                    <img src="https://placehold.jp/500x300.png" alt="建設業界の発注プラットフォーム">
+                </div>
+                <div class="solution-cards">
+                    <div class="solution-card">
+                        <h3>プラットフォームの概要</h3>
+                        <p>工事に特化した発注プラットフォームで、発注企業と優良工事会社をつなぎます。データに基づく透明性と、実績ベースの信用スコアで、最適な工事会社とのマッチングを実現します。</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>単なる一括見積サイトではない高品質重視の仕組み</h3>
+                        <p>信頼性や品質を重視した独自の評価システムで、本当に信頼できる工事会社だけをご紹介。価格だけでなく品質と実績を重視します。</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>適正価格維持の仕組みと安請負防止</h3>
+                        <p>過度な値下げ競争による品質低下を防ぎ、適正価格での取引を促進。工事会社と発注企業双方にとって健全な取引環境を実現します。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 機能紹介セクション -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FEATURES</span>
+                <h2>発注企業様のための充実機能</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>案件登録と一括見積依頼</h3>
+                    <p>工事内容、希望予算、納期などを入力するだけで、条件に合った信頼できる工事会社に一括で見積依頼ができます。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>信用スコアに基づく工事会社比較</h3>
+                    <p>過去の実績や評価に基づく信用スコアで、工事会社の信頼性を客観的に評価。安心して選定できます。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>適正価格シミュレーター</h3>
+                    <p>地域や工事種別ごとの市場相場データを分析し、適正な予算設定をサポート。過剰な出費や品質低下を防ぎます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- メリットセクション -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">ADVANTAGES</span>
+                <h2>なぜ当プラットフォームが選ばれるのか</h2>
+            </div>
+            <div class="advantages-list">
+                <div class="advantage-item">
+                    <div class="check-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <p>信用スコアによる工事会社の品質保証</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="check-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <p>双方向評価システムによる健全な取引環境</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="check-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <p>契約から完工までの一貫サポート</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="check-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <p>データに基づく市場価格の透明性</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="check-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <p>10年を越える実績を誇るCAREECONが運営</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使い方セクション -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">HOW IT WORKS</span>
+                <h2>簡単3ステップで工事会社とマッチング</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>案件情報を入力</h3>
+                    <p>工事内容や予算、スケジュールなどの情報を入力するだけで完了します。</p>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>見積を受領・比較</h3>
+                    <p>信用スコアと価格を比較し、最適な工事会社を選定できます。</p>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>発注・進捗管理</h3>
+                    <p>工事の進捗状況をリアルタイムで確認・管理できます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 事例セクション -->
+    <section class="case-studies" id="case-studies">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">CASE STUDIES</span>
+                <h2>導入企業様の声</h2>
+            </div>
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>大手企業での活用事例</h3>
+                    <p>全国100拠点以上の出店計画において、信頼できる工事会社選定の工数を削減。地方出店もスムーズに進行。</p>
+                </div>
+                <div class="case-card">
+                    <div class="icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>工期厳守率の向上</h3>
+                    <p>進捗管理システムの活用で工期遅延を未然に防止。計画通りのオープンで売上計画を達成。</p>
+                </div>
+                <div class="case-card">
+                    <div class="icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>コスト削減効果</h3>
+                    <p>適正価格シミュレーターと複数社比較で、平均15%のコスト削減を実現。品質は維持したまま予算を最適化。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- パートナー紹介セクション -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">PARTNERS</span>
+                <h2>登録工事業者の一部をご紹介</h2>
+            </div>
+            <div class="partners-intro">
+                <p>CAREECONには、厳格な審査を通過した信頼できる工事業者が多数登録しています。確かな実績と技術を持つパートナー企業が、高品質な施工をサポートします。</p>
+            </div>
+            <div class="partner-logos">
+                <div class="partner-logo">
+                    <img src="https://placehold.jp/150x80.png" alt="株式会社匠建設">
+                    <h4>株式会社匠建設</h4>
+                    <p>内装工事専門</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="https://placehold.jp/150x80.png" alt="大和工務店">
+                    <h4>大和工務店</h4>
+                    <p>店舗設計・施工</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="https://placehold.jp/150x80.png" alt="リノベーションプラス">
+                    <h4>リノベーションプラス</h4>
+                    <p>改装・リノベーション</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="https://placehold.jp/150x80.png" alt="クリエイト電気">
+                    <h4>クリエイト電気</h4>
+                    <p>電気工事</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="https://placehold.jp/150x80.png" alt="水道テクノ">
+                    <h4>水道テクノ</h4>
+                    <p>給排水設備</p>
+                </div>
+            </div>
+            <p class="partners-more">他にも5,500社以上の工事業者が登録しています</p>
+            <div class="cta-button">
+                <a href="#" class="button secondary">登録業者について詳しく見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQセクション -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FAQ</span>
+                <h2>よくある質問</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        利用料金について
+                    </div>
+                    <div class="faq-answer">
+                        <p>発注企業様は無料でご利用いただけます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        工事会社の審査基準
+                    </div>
+                    <div class="faq-answer">
+                        <p>実績、資格、財務状況、顧客評価などの複合的な基準で厳格に審査しています。また定期的な再審査も実施し、品質維持に努めています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        見積までの流れ
+                    </div>
+                    <div class="faq-answer">
+                        <p>案件情報をご登録いただくと、通常3営業日以内に複数の工事会社から見積が届きます。信用スコアと合わせて比較検討いただけます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        対応エリアについて
+                    </div>
+                    <div class="faq-answer">
+                        <p>全国主要都市を中心に対応しています。地方エリアも順次拡大中です。詳細はお問い合わせください。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせセクション -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">GET STARTED</span>
+                <h2>まずは無料見積・相談依頼</h2>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="company">会社名</label>
+                        <input type="text" id="company" placeholder="例：株式会社〇〇">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">お名前</label>
+                        <input type="text" id="name" placeholder="例：山田 太郎">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス</label>
+                        <input type="email" id="email" placeholder="例：example@company.co.jp">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" placeholder="例：03-1234-5678">
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry-type">お問い合わせ内容</label>
+                        <select id="inquiry-type">
+                            <option value="">選択してください</option>
+                            <option value="consultation">無料相談</option>
+                            <option value="quotation">見積依頼</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">詳細</label>
+                        <textarea id="message" placeholder="ご質問・ご要望などをご記入ください"></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="button primary large">送信する</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッターセクション -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="https://placehold.jp/150x50.png" alt="CAREECON">
+                    </div>
+                    <p>CAREECONは、発注企業と工事会社をつなぐマッチングプラットフォームです。信頼性と透明性を重視し、建設業界の新しい発注の形を提供します。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="#features">機能紹介</a></li>
+                        <li><a href="#how-it-works">使い方</a></li>
+                        <li><a href="#case-studies">導入事例</a></li>
+                        <li><a href="#partners">登録業者</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>会社情報</h4>
+                    <ul>
+                        <li><a href="#">会社概要</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                        <li><a href="#">利用規約</a></li>
+                        <li><a href="#">特定商取引法に基づく表記</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>お問い合わせ</h4>
+                    <ul>
+                        <li><a href="#contact">お問い合わせフォーム</a></li>
+                        <li><a href="#">03-1234-5678</a></li>
+                        <li><a href="#">（平日 9:00-18:00）</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CAREECON by BRANU株式会社 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // FAQアコーディオン機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.contains('active');
+                    
+                    // 他のすべてのFAQを閉じる
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // クリックされたFAQを開く（すでに開いていた場合は閉じる）
+                    if (!isActive) {
+                        question.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
